@@ -1,5 +1,36 @@
 <template>
-  <p><FileReader @load="gotImage"></FileReader></p>
+  <table class="topnavbar">
+    <tr>
+      <td class="leftAlign">Brettchenweben-Tool</td>
+      <td class="leftAlign"><FileReader @load="gotImage"></FileReader></td>
+      <td>
+        <button class="topnav" @click="addNewLine">Neue Reihe laden</button>
+        <button class="topnav" @click="removeLastLine">
+          Letzte Reihe löschen
+        </button>
+      </td>
+      <td>
+        <button class="topnav" @click="console.log(1)">
+          Vorherige Pfeile laden</button
+        ><button class="topnav" @click="console.log(2)">
+          Nächste Pfeile laden
+        </button>
+      </td>
+      <td>
+        <button class="topnav" @click="arrowsInvert">Pfeile invertieren</button
+        ><button class="topnav" @click="arrowsUp">Pfeile nach oben</button>
+      </td>
+      <td>
+        <button class="topnav" @click="console.log(1)">
+          Muster herunterladen</button
+        ><button class="topnav" @click="console.log(2)">
+          Pfeile herunterladen
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- <p><FileReader @load="gotImage"></FileReader></p>
   <p>
     <button @click="arrowsInvert">Pfeile invertieren</button
     ><button @click="arrowsUp">Pfeile nach oben</button>
@@ -7,7 +38,7 @@
   <p>
     <button @click="addNewLine">Neue Reihe laden</button>
     <button @click="removeLastLine">Letzte Reihe löschen</button>
-  </p>
+  </p> -->
   <table class="brettchenTable">
     <tr>
       <td
@@ -60,6 +91,9 @@ import FileReader from "./FileReader.vue";
 
 export default defineComponent({
   name: "HelloWorld",
+  metaInfo: {
+    title: "Brettchenweben-Tool",
+  },
   data() {
     return {
       text: "",
@@ -71,6 +105,9 @@ export default defineComponent({
   },
   components: {
     FileReader,
+  },
+  mounted() {
+    document.title = "Brettchenweben";
   },
   methods: {
     gotImage(img: any) {
@@ -152,7 +189,7 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 .brettchenTable {
   width: 98vw;
   margin: 1vw;
@@ -162,5 +199,57 @@ export default defineComponent({
 .brettchenTable tr td {
   height: 1cm;
   border: none;
+}
+
+/* Add a black background color to the top navigation */
+.topnavbar {
+  background-color: #333;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  color: #04aa6d;
+  font-weight: bold;
+  font-size: x-large;
+}
+.topnavbar td {
+}
+
+/* Style the links inside the navigation bar */
+.topnav,
+input[type="file"]::file-selector-button {
+  /* float: left; */
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  background-color: #04aa6d;
+  border: none;
+  height: 98%;
+  margin: 3px;
+}
+.topnav {
+  width: 75%;
+}
+input[type="file"] {
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav:hover,
+input[type="file"]::file-selector-button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav.active,
+input[type="file"]::file-selector-button.active {
+  background-color: #04aa6d;
+  color: white;
+}
+.leftAlign {
+  padding-left: 15px;
+  text-align: left;
 }
 </style>
